@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPosts, getTickets, getUsers } from "../services/api";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -49,10 +50,9 @@ const Dashboard = () => {
   console.log(resolvedTickets);
 
   return (
-    <div className="container">
-      <h1>Customer Support Ticket Management System</h1>
-      <h2>Dashboard</h2>
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 };
 
