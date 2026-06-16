@@ -22,7 +22,7 @@ STEPS
 6. DO css reset
 7. made components, services, styles, pages folder
 8. do api setup in api.js and print api data reponse in dashboard.jsx to check the api works
-9.now we need to combine user and post data
+9. {now we need to combine user and post data
  /users → customer information  
     {
         "id": 1,
@@ -48,13 +48,14 @@ STEPS
         }
     }, - sample data from api
 
-/posts → ticket subject and description
-{
+    /posts → ticket subject and description
+    {
         "userId": 1,
         "id": 1,
         "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
         "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-},  - sample data from api
+    },  - sample data from api
+    }
 
 10. we need proper ticket data like below:
 {
@@ -74,8 +75,8 @@ too do in api.js
 - return a combined ticket data like above
 - test final ticket data by print in dashboard.jsx
 
-
-
+11. save constructed ticket json data in usestate variable
+12. find count for total tickets, open tickets, in progress tickets, resolved tickets in dashboard.jsx
 
 POSTMAN TESTS
 1.GET Users

@@ -18,17 +18,17 @@ export const getTickets = async () => {
 
   //   console.log("HI");
 
-  const priorities = ["Low", "Medium", "High"];
-  const status = ["Open", "In Progress", "Resolved"];
+  const priorities = ["low", "medium", "high"];
+  const status = ["open", "in progress", "resolved"];
 
   const tickets = posts.map((post, index) => {
     const user = users.find((user) => user.id == post.userId);
 
     return {
       id: post.id,
-      customerName: user?.name || "Unknown User",
-      email: user?.email || "no email",
-      subject: post.title || "no subject",
+      customerName: user?.name.toLowerCase() || "Unknown User",
+      email: user?.email.toLowerCase() || "no email",
+      subject: post.title.toLowerCase() || "no subject",
       priority: priorities[index % priorities.length],
       status: status[index % status.length],
       createdData: new Date(2026, 4, (index % 31) + 1)

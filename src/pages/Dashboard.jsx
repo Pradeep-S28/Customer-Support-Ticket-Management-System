@@ -1,25 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getPosts, getTickets, getUsers } from "../services/api";
 
 const Dashboard = () => {
-  // console.log("hi");
+  const [tickets, setTickets] = useState([]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTicketData = async () => {
       try {
         const users = await getUsers();
         const posts = await getPosts();
 
-        const tickets = await getTickets();
+        const ticketData = await getTickets();
+
+        setTickets(ticketData);
 
         // console.log("Users:", users);
         // console.log("Posts", posts);
-        console.log("tickets", tickets);
+        //console.log("tickets", tickets);
       } catch (error) {
         console.log("API Error:", error.message);
       }
     };
-    fetchData();
+    fetchTicketData();
   }, []);
+
+  //find count for dash board cards
+
+  //total tickets
+  const totalTickets = tickets.length;
+  console.log(totalTickets);
+
+  //open tickets
+  const openTickets = tickets.filter(
+    (ticket) => ticket.status == "open",
+  ).length;
+  console.log(openTickets);
+
+  //in progress tickets
+  const inProgressTickets = tickets.filter(
+    (ticket) => ticket.status == "in progress",
+  ).length;
+  console.log(inProgressTickets);
+
+  //resolved tickets
+  const resolvedTickets = tickets.filter(
+    (ticket) => ticket.status == "resolved",
+  ).length;
+  console.log(resolvedTickets);
 
   return (
     <div className="container">
