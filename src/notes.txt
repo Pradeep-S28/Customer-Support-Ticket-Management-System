@@ -1,2 +1,38 @@
 devloper dependencies
-1. npm install gh-pages
+1. npm install gh-pages --save-dev
+
+
+dependencies
+1. npm install bootstrap
+        import "bootstrap/dist/css/bootstrap.min.css";
+        import "bootstrap/dist/js/bootstrap.bundle.min.js"; - these two imports in main.jsx
+2. npm install axios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+STEPS
+1. create basic react app
+2. remove unnecessary default codes
+3. create a github repo and push
+4. deploy in github pages
+5. setup bootstrap
+6. DO css reset
+7. made components, services, styles, pages folder
+8. do api setup in api.js and print api data reponse in dashboard.jsx to check the api works
+
+
+
+POSTMAN TESTS
+1.GET Users
+2.GET Posts
