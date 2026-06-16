@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
-import { getPosts, getUsers } from "../services/api";
+import { getPosts, getTickets, getUsers } from "../services/api";
 
 const Dashboard = () => {
-  console.log("hi");
+  // console.log("hi");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const users = await getUsers();
         const posts = await getPosts();
 
-        console.log("Users:", users);
-        console.log("Posts", posts);
+        const tickets = await getTickets();
+
+        // console.log("Users:", users);
+        // console.log("Posts", posts);
+        console.log("tickets", tickets);
       } catch (error) {
         console.log("API Error:", error.message);
       }

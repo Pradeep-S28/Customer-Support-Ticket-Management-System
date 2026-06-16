@@ -13,14 +13,6 @@ dependencies
 
 
 
-
-
-
-
-
-
-
-
 STEPS
 1. create basic react app
 2. remove unnecessary default codes
@@ -30,9 +22,67 @@ STEPS
 6. DO css reset
 7. made components, services, styles, pages folder
 8. do api setup in api.js and print api data reponse in dashboard.jsx to check the api works
+9.now we need to combine user and post data
+ /users → customer information  
+    {
+        "id": 1,
+        "name": "Leanne Graham",
+        "username": "Bret",
+        "email": "Sincere@april.biz",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        },
+        "phone": "1-770-736-8031 x56442",
+        "website": "hildegard.org",
+        "company": {
+            "name": "Romaguera-Crona",
+            "catchPhrase": "Multi-layered client-server neural-net",
+            "bs": "harness real-time e-markets"
+        }
+    }, - sample data from api
+
+/posts → ticket subject and description
+{
+        "userId": 1,
+        "id": 1,
+        "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+        "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+},  - sample data from api
+
+10. we need proper ticket data like below:
+{
+  id: 1,
+  customerName: "Leanne Graham",
+  email: "Sincere@april.biz",
+  subject: "Ticket subject here",
+  description: "Ticket description here",
+  priority: "High",
+  status: "Open",
+  createdDate: "2026-06-16"
+}
+
+too do in api.js
+- make every post is a ticket data
+- map the post data , iterate , using find() match user id in post data and user id in user data 
+- return a combined ticket data like above
+- test final ticket data by print in dashboard.jsx
+
 
 
 
 POSTMAN TESTS
 1.GET Users
 2.GET Posts
+
+
+
+
+
+
