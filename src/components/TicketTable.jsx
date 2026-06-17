@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { truncateText } from "../utils/helper";
 
 const TicketTable = ({ tickets }) => {
@@ -7,6 +7,12 @@ const TicketTable = ({ tickets }) => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("newest");
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchText, statusFilter, priorityFilter, sortOrder]);
 
   let filteredTickets = tickets;
 
@@ -45,6 +51,11 @@ const TicketTable = ({ tickets }) => {
       return new Date(a.createdDate) - new Date(b.createdDate);
     }
   });
+
+  const totalPages = Math.ceil(filteredTickets.length / recordsPerPage);
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const currentTickets = filteredTickets.slice(firstIndex, lastIndex);
 
   return (
     <div className="card shadow-sm border-0">
@@ -121,7 +132,7 @@ const TicketTable = ({ tickets }) => {
             </thead>
 
             <tbody>
-              {filteredTickets.map((ticket, index) => (
+              {currentTickets.map((ticket, index) => (
                 <tr key={index}>
                   <td>{ticket.id}</td>
                   <td>{ticket.customerName}</td>
@@ -136,6 +147,32 @@ const TicketTable = ({ tickets }) => {
           </table>
         </div>
         {/* table design ended*/}
+
+        {filteredTickets.length > 0 && (
+          <div className="d-flex justify-content-between align-items-center mt-3">
+            <p className="mb-0">
+              Page {currentPage} of {totalPages}
+            </p>
+
+            <div>
+              <button
+                className="btn btn-outline-primary btn-sm me-2"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                Previous
+              </button>
+
+              <button
+                className="btn btn-outline-primary btn-sm"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
 
         {filteredTickets.length === 0 && (
           <p className="text-muted text-center mt-3">No tickets found.</p>
