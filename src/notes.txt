@@ -77,8 +77,9 @@ too do in api.js
 
 11. save constructed ticket json data in usestate variable
 12. find count for total tickets, open tickets, in progress tickets, resolved tickets in dashboard.jsx
-
 13. create "Navbar.jsx" in components and do design , "add ticket" button is dummy now , in future we do that for adding ticket
+14. receive all 4 categories length in DashboardCards.jsx and design cards with count , add DashboardCards component in dashboard
+
 
 POSTMAN TESTS
 1.GET Users

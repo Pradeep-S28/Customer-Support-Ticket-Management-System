@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getPosts, getTickets, getUsers } from "../services/api";
+import { getTickets } from "../services/api";
 import Navbar from "../components/Navbar";
 import DashboardCards from "../components/DashboardCards";
+import TicketTable from "../components/TicketTable";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -9,8 +10,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTicketData = async () => {
       try {
-        const users = await getUsers();
-        const posts = await getPosts();
+        //const users = await getUsers();
+        // const posts = await getPosts();
 
         const ticketData = await getTickets();
 
@@ -55,16 +56,19 @@ const Dashboard = () => {
       {/* Navbar component */}
       <Navbar />
 
-      {/* Dashboard cards */}
       <div className="container py-4">
         <h1 className="mb-4">Dashboard</h1>
 
+        {/* Dashboard cards */}
         <DashboardCards
           totalTickets={totalTickets}
           openTickets={openTickets}
           inProgressTickets={inProgressTickets}
           resolvedTickets={resolvedTickets}
         />
+
+        {/* ticket table */}
+        <TicketTable tickets={tickets} />
       </div>
     </>
   );
