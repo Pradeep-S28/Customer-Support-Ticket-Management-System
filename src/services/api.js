@@ -31,7 +31,7 @@ export const getTickets = async () => {
       subject: post.title.toLowerCase() || "no subject",
       priority: priorities[index % priorities.length],
       status: status[index % status.length],
-      createdDate: new Date(2026, 4, (index % 31) + 1)
+      createdDate: new Date(2026, 4, (index % 28) + 1)
         .toISOString()
         .split("T")[0],
     };
