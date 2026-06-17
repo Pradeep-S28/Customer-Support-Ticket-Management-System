@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getPosts, getTickets, getUsers } from "../services/api";
 import Navbar from "../components/Navbar";
+import DashboardCards from "../components/DashboardCards";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -29,29 +30,42 @@ const Dashboard = () => {
 
   //total tickets
   const totalTickets = tickets.length;
-  console.log(totalTickets);
+  // console.log(totalTickets);
 
   //open tickets
   const openTickets = tickets.filter(
     (ticket) => ticket.status == "open",
   ).length;
-  console.log(openTickets);
+  // console.log(openTickets);
 
   //in progress tickets
   const inProgressTickets = tickets.filter(
     (ticket) => ticket.status == "in progress",
   ).length;
-  console.log(inProgressTickets);
+  // console.log(inProgressTickets);
 
   //resolved tickets
   const resolvedTickets = tickets.filter(
     (ticket) => ticket.status == "resolved",
   ).length;
-  console.log(resolvedTickets);
+  // console.log(resolvedTickets);
 
   return (
     <>
+      {/* Navbar component */}
       <Navbar />
+
+      {/* Dashboard cards */}
+      <div className="container py-4">
+        <h1 className="mb-4">Dashboard</h1>
+
+        <DashboardCards
+          totalTickets={totalTickets}
+          openTickets={openTickets}
+          inProgressTickets={inProgressTickets}
+          resolvedTickets={resolvedTickets}
+        />
+      </div>
     </>
   );
 };
