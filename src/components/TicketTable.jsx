@@ -6,6 +6,7 @@ const TicketTable = ({ tickets }) => {
   const [searchText, setSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
+  const [sortOrder, setSortOrder] = useState("newest");
 
   let filteredTickets = tickets;
 
@@ -36,6 +37,15 @@ const TicketTable = ({ tickets }) => {
     });
   }
 
+  //sort by date
+  filteredTickets = [...filteredTickets].sort((a, b) => {
+    if (sortOrder == "newest") {
+      return new Date(b.createdDate) - new Date(a.createdDate);
+    } else {
+      return new Date(a.createdDate) - new Date(b.createdDate);
+    }
+  });
+
   return (
     <div className="card shadow-sm border-0">
       <div className="card-body">
@@ -43,7 +53,7 @@ const TicketTable = ({ tickets }) => {
 
         <div className="row mb-3 g-2">
           {/* Search filter column */}
-          <div className="col-md-6">
+          <div className="col-md-3">
             {/* Search input */}
             <input
               type="text"
@@ -79,6 +89,18 @@ const TicketTable = ({ tickets }) => {
               <option value="low">Low</option>
               <option value="medium">Medium</option>
               <option value="high">High</option>
+            </select>
+          </div>
+
+          {/* sort dropdown */}
+          <div className="col-md-3">
+            <select
+              className="form-select"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
             </select>
           </div>
         </div>
