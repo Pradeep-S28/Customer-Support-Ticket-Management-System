@@ -2,26 +2,49 @@ import { useState } from "react";
 import { truncateText } from "../utils/helper";
 
 const TicketTable = ({ tickets }) => {
+  // console.log(tickets);
   const [searchText, setSearchText] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [priorityFilter, setPriorityFilter] = useState("all");
 
-  // Search funtionality
-  const searchedTickets = tickets.filter((ticket) => {
-    const search = searchText.toLowerCase().trim();
-    if (search == "") return true;
-    return (
-      ticket.customerName.toLowerCase().includes(search) ||
-      ticket.subject.toLowerCase().includes(search)
-    );
-  });
+  let filteredTickets = tickets;
+
+  // Search filter
+  if (searchText != "") {
+    filteredTickets = tickets.filter((ticket) => {
+      const search = searchText.toLowerCase().trim();
+      return (
+        ticket.customerName.toLowerCase().includes(search) ||
+        ticket.subject.toLowerCase().includes(search)
+      );
+    });
+  }
+
+  // status filter
+  if (statusFilter != "all") {
+    // console.log("status filter");
+    filteredTickets = filteredTickets.filter((ticket) => {
+      return ticket.status == statusFilter;
+    });
+  }
+
+  // priority filter
+  if (priorityFilter != "all") {
+    // console.log("status filter");
+    filteredTickets = filteredTickets.filter((ticket) => {
+      return ticket.priority == priorityFilter;
+    });
+  }
 
   return (
     <div className="card shadow-sm border-0">
       <div className="card-body">
         <h5 className="card-title mb-3 text-center">Ticket List</h5>
 
-        {/* Search input */}
-        <div className="row mb-3">
+        <div className="row mb-3 g-2">
+          {/* Search filter column */}
           <div className="col-md-6">
+            {/* Search input */}
             <input
               type="text"
               className="form-control"
@@ -29,6 +52,34 @@ const TicketTable = ({ tickets }) => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
+          </div>
+
+          {/* status filter column */}
+          <div className="col-md-3">
+            <select
+              className="form-select"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="all">All Status</option>
+              <option value="open">Open</option>
+              <option value="in progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+            </select>
+          </div>
+
+          {/* priority filter column */}
+          <div className="col-md-3">
+            <select
+              className="form-select"
+              value={priorityFilter}
+              onChange={(e) => setPriorityFilter(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
           </div>
         </div>
 
@@ -48,7 +99,7 @@ const TicketTable = ({ tickets }) => {
             </thead>
 
             <tbody>
-              {searchedTickets.map((ticket, index) => (
+              {filteredTickets.map((ticket, index) => (
                 <tr key={index}>
                   <td>{ticket.id}</td>
                   <td>{ticket.customerName}</td>
@@ -64,7 +115,7 @@ const TicketTable = ({ tickets }) => {
         </div>
         {/* table design ended*/}
 
-        {tickets.length === 0 && (
+        {filteredTickets.length === 0 && (
           <p className="text-muted text-center mt-3">No tickets found.</p>
         )}
       </div>

@@ -64,8 +64,8 @@ STEPS
   email: "Sincere@april.biz",
   subject: "Ticket subject here",
   description: "Ticket description here",
-  priority: "High",
   status: "Open",
+  priority: "High",
   createdDate: "2026-06-16"
 }
 
@@ -80,8 +80,9 @@ too do in api.js
 13. create "Navbar.jsx" in components and do design , "add ticket" button is dummy now , in future we do that for adding ticket
 14. receive all 4 categories length in DashboardCards.jsx and design cards with count , add DashboardCards component in dashboard
 15. now create TicketTable.jsx , receive Tickets state as props , create table with the jsaon ticket data , for slice use helper function, create utils/helper.js for truncateText.
-16.next search functionality in table in ticketTable.jsx
-
+16.next search functionality in table in ticketTable.jsx , .includes() is the main function here 
+17.now status filter in TicketsTable.jsx
+18. now do priority filter
 
 POSTMAN TESTS
 1.GET Users
