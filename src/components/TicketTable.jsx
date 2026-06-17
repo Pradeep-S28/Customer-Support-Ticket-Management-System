@@ -1,10 +1,36 @@
+import { useState } from "react";
 import { truncateText } from "../utils/helper";
 
 const TicketTable = ({ tickets }) => {
+  const [searchText, setSearchText] = useState("");
+
+  // Search funtionality
+  const searchedTickets = tickets.filter((ticket) => {
+    const search = searchText.toLowerCase().trim();
+    if (search == "") return true;
+    return (
+      ticket.customerName.toLowerCase().includes(search) ||
+      ticket.subject.toLowerCase().includes(search)
+    );
+  });
+
   return (
     <div className="card shadow-sm border-0">
       <div className="card-body">
         <h5 className="card-title mb-3 text-center">Ticket List</h5>
+
+        {/* Search input */}
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by customer name or subject"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </div>
+        </div>
 
         {/* table design */}
         <div className="table-responsive d-flex justify-content-center">
@@ -22,7 +48,7 @@ const TicketTable = ({ tickets }) => {
             </thead>
 
             <tbody>
-              {tickets.map((ticket, index) => (
+              {searchedTickets.map((ticket, index) => (
                 <tr key={index}>
                   <td>{ticket.id}</td>
                   <td>{ticket.customerName}</td>

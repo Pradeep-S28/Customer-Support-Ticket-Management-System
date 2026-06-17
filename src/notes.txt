@@ -79,6 +79,8 @@ too do in api.js
 12. find count for total tickets, open tickets, in progress tickets, resolved tickets in dashboard.jsx
 13. create "Navbar.jsx" in components and do design , "add ticket" button is dummy now , in future we do that for adding ticket
 14. receive all 4 categories length in DashboardCards.jsx and design cards with count , add DashboardCards component in dashboard
+15. now create TicketTable.jsx , receive Tickets state as props , create table with the jsaon ticket data , for slice use helper function, create utils/helper.js for truncateText.
+16.next search functionality in table in ticketTable.jsx
 
 
 POSTMAN TESTS
