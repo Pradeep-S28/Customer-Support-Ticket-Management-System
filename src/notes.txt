@@ -98,7 +98,7 @@ too do in api.js
 
 24. now need to crate tickets details view
     - create TicketDetails.jsx
-    - when table row is clicked , this component renders above the table , do conditional rendering
+    - when table row is clicked , this component renders above the table , do conditional rendering.
 
 
 POSTMAN TESTS
