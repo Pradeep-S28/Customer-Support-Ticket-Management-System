@@ -122,7 +122,7 @@ too do in api.js
     - if if editticket have data then onUpdateTicket/handleUpdateTicket inside this function we need to send the current formData as a parameter
     - if no editticket data then it is adding new data
     - also do conditional rendering for save/update button & form title in formTickets components
-
+    - point to know in json edit { ...ticket, ...updatedTicketData } - Old data first, new data second
 POSTMAN TESTS
 1.GET Users
 2.GET Posts
