@@ -148,6 +148,7 @@ const TicketTable = ({ tickets }) => {
         </div>
         {/* table design ended*/}
 
+        {/* pagination buttons */}
         {filteredTickets.length > 0 && (
           <div className="d-flex justify-content-between align-items-center mt-3">
             <p className="mb-0">
@@ -174,6 +175,7 @@ const TicketTable = ({ tickets }) => {
           </div>
         )}
 
+        {/* if no tickets */}
         {filteredTickets.length === 0 && (
           <p className="text-muted text-center mt-3">No tickets found.</p>
         )}
