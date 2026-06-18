@@ -13,7 +13,7 @@ https://pradeep-s28.github.io/Customer-Support-Ticket-Management-System/
 ## Technologies Used
 
 - React.js
-- JavaScript ES6+
+- JavaScript
 - HTML5
 - CSS3
 - Bootstrap
@@ -208,7 +208,6 @@ Screenshots are included for the following:
 <img width="362" height="450" alt="mobile-responsive 1" src="https://github.com/user-attachments/assets/59cf9a69-cc29-4e5c-832e-a86c8f932bc1" />
 
 <img width="352" height="452" alt="mobile-responsive 2" src="https://github.com/user-attachments/assets/0ac67014-7f42-4371-9fca-b7318084c039" />
-
 
 ## Notes
 
