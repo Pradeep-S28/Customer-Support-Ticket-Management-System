@@ -4,11 +4,17 @@ import Navbar from "../components/Navbar";
 import DashboardCards from "../components/DashboardCards";
 import TicketTable from "../components/TicketTable";
 import TicketForm from "../components/TicketForm";
+import TicketDetails from "../components/TicketDetails";
 
 const Dashboard = () => {
+  // total all tickets
   const [tickets, setTickets] = useState([]);
 
+  // for open close form
   const [showForm, setShowForm] = useState(false);
+
+  //for ticket details view
+  const [selectedTicket, setSelectedTicket] = useState(null);
 
   useEffect(() => {
     const fetchTicketData = async () => {
@@ -90,8 +96,15 @@ const Dashboard = () => {
           />
         )}
 
+        {selectedTicket && (
+          <TicketDetails
+            ticket={selectedTicket}
+            onClose={() => setSelectedTicket(null)}
+          />
+        )}
+
         {/* ticket table */}
-        <TicketTable tickets={tickets} />
+        <TicketTable tickets={tickets} onSelectTicket={setSelectedTicket} />
       </div>
     </>
   );

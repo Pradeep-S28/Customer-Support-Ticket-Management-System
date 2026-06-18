@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { truncateText } from "../utils/helper";
 
-const TicketTable = ({ tickets }) => {
+const TicketTable = ({ tickets, onSelectTicket }) => {
   // console.log(tickets);
   const [searchText, setSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -133,7 +133,11 @@ const TicketTable = ({ tickets }) => {
 
             <tbody>
               {currentTickets.map((ticket, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  onClick={() => onSelectTicket(ticket)}
+                  style={{ cursor: "pointer" }}
+                >
                   <td>{ticket.id}</td>
                   <td>{ticket.customerName}</td>
                   <td>{ticket.email}</td>

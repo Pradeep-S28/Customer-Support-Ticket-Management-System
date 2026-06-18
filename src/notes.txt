@@ -89,7 +89,17 @@ too do in api.js
 21. now create TicketForm.jsx , create form elements (name,email,subject,descrption,priority,status)
 22. do validation for the form elements in ticketsform.jsx
 
-23.now connect the form to the "new ticket" button in navbar and add submitted tickets to ticket state
+23.now we need to connect all
+    - form should disappear in default
+    - when i click add ticket the form should visible 
+    - after submit the data needs to do to dashboard.jsx because all tickets state are there 
+    - we need to add two key in new created form data , id & createddate
+    - then store in addition to original tickets data
+
+24. now need to crate tickets details view
+    - create TicketDetails.jsx
+    - when table row is clicked , this component renders above the table , do conditional rendering
+
 
 POSTMAN TESTS
 1.GET Users

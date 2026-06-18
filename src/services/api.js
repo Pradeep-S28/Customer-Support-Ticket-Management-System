@@ -29,6 +29,7 @@ export const getTickets = async () => {
       customerName: user?.name.toLowerCase() || "Unknown User",
       email: user?.email.toLowerCase() || "no email",
       subject: post.title.toLowerCase() || "no subject",
+      description: post.body,
       priority: priorities[index % priorities.length],
       status: status[index % status.length],
       createdDate: new Date(2026, 4, (index % 28) + 1)
