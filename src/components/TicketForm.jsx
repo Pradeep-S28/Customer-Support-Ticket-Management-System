@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-const TicketForm = ({ onAddTicket, onClose }) => {
+const TicketForm = ({ onAddTicket, onUpdateTicket, onClose, editTicket }) => {
+  // this is important to note , candition for popup data in form field during edit operation
   const [formData, setFormData] = useState({
-    customerName: "",
-    email: "",
-    subject: "",
-    description: "",
-    priority: "low",
-    status: "open",
+    customerName: editTicket ? editTicket.customerName : "",
+    email: editTicket ? editTicket.email : "",
+    subject: editTicket ? editTicket.subject : "",
+    description: editTicket ? editTicket.description : "",
+    priority: editTicket ? editTicket.priority : "low",
+    status: editTicket ? editTicket.status : "open",
   });
   const [errors, setErrors] = useState({});
 
@@ -56,15 +57,20 @@ const TicketForm = ({ onAddTicket, onClose }) => {
     if (!isValid) {
       return;
     }
-    onAddTicket(formData);
 
-    console.log("Form Data:", formData);
+    if (editTicket) {
+      onUpdateTicket(formData);
+    } else {
+      onAddTicket(formData);
+    }
   };
 
   return (
     <div className="card shadow-sm border-0 mb-4">
       <div className="card-body">
-        <h5 className="card-title mb-3">Create New Ticket</h5>
+        <h5 className="card-title mb-3">
+          {editTicket ? "Edit Ticket" : "Create New Ticket"}
+        </h5>
 
         <form onSubmit={handleSubmit}>
           <div className="row g-3">
@@ -154,7 +160,7 @@ const TicketForm = ({ onAddTicket, onClose }) => {
 
             <div className="col-12 d-flex gap-2">
               <button type="submit" className="btn btn-primary">
-                Save Ticket
+                {editTicket ? "Update Ticket" : "Save Ticket"}
               </button>
 
               <button

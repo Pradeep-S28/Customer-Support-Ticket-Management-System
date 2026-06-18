@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { truncateText } from "../utils/helper";
 
-const TicketTable = ({ tickets, onSelectTicket }) => {
+const TicketTable = ({ tickets, onSelectTicket, onEditTicket }) => {
   // console.log(tickets);
   const [searchText, setSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -128,6 +128,7 @@ const TicketTable = ({ tickets, onSelectTicket }) => {
                 <th>Priority</th>
                 <th>Status</th>
                 <th>Created Date</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -145,6 +146,19 @@ const TicketTable = ({ tickets, onSelectTicket }) => {
                   <td>{ticket.priority}</td>
                   <td>{ticket.status}</td>
                   <td>{ticket.createdDate}</td>
+                  <td>
+                    <td>
+                      <button
+                        className="btn btn-sm btn-warning"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEditTicket(ticket);
+                        }}
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </td>
                 </tr>
               ))}
             </tbody>

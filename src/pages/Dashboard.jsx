@@ -16,6 +16,9 @@ const Dashboard = () => {
   //for ticket details view
   const [selectedTicket, setSelectedTicket] = useState(null);
 
+  //to edit ticket  data
+  const [editTicket, setEditTicket] = useState(null);
+
   useEffect(() => {
     const fetchTicketData = async () => {
       try {
@@ -72,6 +75,35 @@ const Dashboard = () => {
     setShowForm(false);
   };
 
+  // edit the ticket data
+  const handleEditClick = (ticket) => {
+    setEditTicket(ticket);
+    setShowForm(true);
+  };
+
+  // take all ticket , matched with current editable ticket , update and save in ticket state
+  const handleUpdateTicket = (updatedTicketData) => {
+    setTickets((prevTickets) =>
+      prevTickets.map((ticket) =>
+        ticket.id === editTicket.id
+          ? {
+              ...ticket,
+              ...updatedTicketData,
+            }
+          : ticket,
+      ),
+    );
+
+    setEditTicket(null);
+    setShowForm(false);
+  };
+
+  //closing form in common for add and edit
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setEditTicket(null);
+  };
+
   return (
     <>
       {/* Navbar component */}
@@ -92,7 +124,9 @@ const Dashboard = () => {
         {showForm && (
           <TicketForm
             onAddTicket={handleAddTicket}
-            onClose={() => setShowForm(false)}
+            onUpdateTicket={handleUpdateTicket}
+            onClose={handleCloseForm}
+            editTicket={editTicket}
           />
         )}
 
@@ -104,7 +138,11 @@ const Dashboard = () => {
         )}
 
         {/* ticket table */}
-        <TicketTable tickets={tickets} onSelectTicket={setSelectedTicket} />
+        <TicketTable
+          tickets={tickets}
+          onSelectTicket={setSelectedTicket}
+          onEditTicket={handleEditClick}
+        />
       </div>
     </>
   );

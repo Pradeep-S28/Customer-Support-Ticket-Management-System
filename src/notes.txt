@@ -100,6 +100,28 @@ too do in api.js
     - create TicketDetails.jsx
     - when table row is clicked , this component renders above the table , do conditional rendering.
 
+25. edit button and edit ticket option
+    - this operation starts from clicking edit button
+    - add action column and set edit button on each row in the table
+    - xxxx important xxxx - <tr> is also in onclick for ticket details view, so conflict happens , we use e.stopPropagation(); - to avoid the click travel from child btn to parent tr
+    - in edit button  onEditTicket(ticket);we need to pass the cureent ticket data to this function, onEditTicket is a prop came from dashboard.jsx , 
+    - onEditTicket/handleEditTicket - have two functions 1.setEditTicket(ticket) we need to pass to this state for update operations , 2.setShowForm(true) to open the form fields
+    - once this edit ticket state have data , renders page again then from dashboard  inside TicketForm two props for edit  onUpdateTicket={handleUpdateTicket}& editTicket={editTicket}
+    - the initial formData state json is now works conditional
+        - const [formData, setFormData] = useState({
+                        customerName: editTicket ? editTicket.customerName : "",
+                        email: editTicket ? editTicket.email : "",
+                        subject: editTicket ? editTicket.subject : "",
+                        description: editTicket ? editTicket.description : "",
+                        priority: editTicket ? editTicket.priority : "low",
+                        status: editTicket ? editTicket.status : "open",
+                         });
+    - ticketform component receiving editTicket - which have data now not null, so initial form data becomes the edit ticket data
+    - due to this formData state change the input form field now have the btn edit clicket row's data
+    - we receiving onUpdateTicket/handleUpdateTicket in ticketform.jsx , after edit while submiting the form the handlesubmit have a condition
+    - if if editticket have data then onUpdateTicket/handleUpdateTicket inside this function we need to send the current formData as a parameter
+    - if no editticket data then it is adding new data
+    - also do conditional rendering for save/update button & form title in formTickets components
 
 POSTMAN TESTS
 1.GET Users
