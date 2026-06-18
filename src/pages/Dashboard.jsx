@@ -3,6 +3,7 @@ import { getTickets } from "../services/api";
 import Navbar from "../components/Navbar";
 import DashboardCards from "../components/DashboardCards";
 import TicketTable from "../components/TicketTable";
+import TicketForm from "../components/TicketForm";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -66,6 +67,8 @@ const Dashboard = () => {
           inProgressTickets={inProgressTickets}
           resolvedTickets={resolvedTickets}
         />
+
+        <TicketForm />
 
         {/* ticket table */}
         <TicketTable tickets={tickets} />
