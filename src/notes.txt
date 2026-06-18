@@ -89,6 +89,8 @@ too do in api.js
 21. now create TicketForm.jsx , create form elements (name,email,subject,descrption,priority,status)
 22. do validation for the form elements in ticketsform.jsx
 
+23.now connect the form to the "new ticket" button in navbar and add submitted tickets to ticket state
+
 POSTMAN TESTS
 1.GET Users
 2.GET Posts

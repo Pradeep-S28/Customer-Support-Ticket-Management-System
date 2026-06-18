@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TicketForm = () => {
+const TicketForm = ({ onAddTicket, onClose }) => {
   const [formData, setFormData] = useState({
     customerName: "",
     email: "",
@@ -56,6 +56,7 @@ const TicketForm = () => {
     if (!isValid) {
       return;
     }
+    onAddTicket(formData);
 
     console.log("Form Data:", formData);
   };
@@ -151,9 +152,17 @@ const TicketForm = () => {
               </select>
             </div>
 
-            <div className="col-12">
+            <div className="col-12 d-flex gap-2">
               <button type="submit" className="btn btn-primary">
                 Save Ticket
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+              >
+                Close
               </button>
             </div>
           </div>

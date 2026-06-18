@@ -8,6 +8,8 @@ import TicketForm from "../components/TicketForm";
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
 
+  const [showForm, setShowForm] = useState(false);
+
   useEffect(() => {
     const fetchTicketData = async () => {
       try {
@@ -52,11 +54,24 @@ const Dashboard = () => {
   ).length;
   // console.log(resolvedTickets);
 
+  // Adding ticket from form submit
+  const handleAddTicket = (newTicketData) => {
+    const newTicket = {
+      id: tickets.length + 1,
+      ...newTicketData,
+      createdDate: new Date().toISOString().split("T")[0],
+    };
+
+    setTickets([newTicket, ...tickets]);
+    setShowForm(false);
+  };
+
   return (
     <>
       {/* Navbar component */}
-      <Navbar />
+      <Navbar onNewTicket={() => setShowForm(true)} />
 
+      {/* Dashboard */}
       <div className="container py-4">
         <h1 className="mb-4">Dashboard</h1>
 
@@ -68,7 +83,12 @@ const Dashboard = () => {
           resolvedTickets={resolvedTickets}
         />
 
-        <TicketForm />
+        {showForm && (
+          <TicketForm
+            onAddTicket={handleAddTicket}
+            onClose={() => setShowForm(false)}
+          />
+        )}
 
         {/* ticket table */}
         <TicketTable tickets={tickets} />
