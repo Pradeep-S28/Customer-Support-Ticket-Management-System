@@ -9,6 +9,7 @@ const TicketForm = () => {
     priority: "low",
     status: "open",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,8 +20,42 @@ const TicketForm = () => {
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (formData.customerName.trim() === "") {
+      newErrors.customerName = "Customer name is required";
+    }
+
+    if (formData.email.trim() === "") {
+      newErrors.email = "Email is required";
+    } else if (!formData.email.includes("@")) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (formData.subject.trim() === "") {
+      newErrors.subject = "Subject is required";
+    }
+
+    if (formData.description.trim() === "") {
+      newErrors.description = "Description is required";
+    } else if (formData.description.trim().length < 20) {
+      newErrors.description = "Description must be at least 20 characters";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const isValid = validateForm();
+
+    if (!isValid) {
+      return;
+    }
 
     console.log("Form Data:", formData);
   };
@@ -41,6 +76,9 @@ const TicketForm = () => {
                 value={formData.customerName}
                 onChange={handleChange}
               />
+              {errors.customerName && (
+                <small className="text-danger">{errors.customerName}</small>
+              )}
             </div>
 
             <div className="col-md-6">
@@ -52,6 +90,9 @@ const TicketForm = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
+              {errors.email && (
+                <small className="text-danger">{errors.email}</small>
+              )}
             </div>
 
             <div className="col-md-12">
@@ -63,6 +104,9 @@ const TicketForm = () => {
                 value={formData.subject}
                 onChange={handleChange}
               />
+              {errors.subject && (
+                <small className="text-danger">{errors.subject}</small>
+              )}
             </div>
 
             <div className="col-md-12">
@@ -74,6 +118,9 @@ const TicketForm = () => {
                 value={formData.description}
                 onChange={handleChange}
               ></textarea>
+              {errors.description && (
+                <small className="text-danger">{errors.description}</small>
+              )}
             </div>
 
             <div className="col-md-6">

@@ -87,6 +87,7 @@ too do in api.js
 20. next do pagination setup , important use useeffect to set to page 1 when we do search by name
 
 21. now create TicketForm.jsx , create form elements (name,email,subject,descrption,priority,status)
+22. do validation for the form elements in ticketsform.jsx
 
 POSTMAN TESTS
 1.GET Users
