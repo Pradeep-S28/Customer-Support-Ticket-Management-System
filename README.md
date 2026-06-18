@@ -95,6 +95,7 @@ customer-support-ticket-management-system
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
+├── notes.txt
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -184,12 +185,30 @@ GET Posts
 
 Screenshots are included for the following:
 
-- Dashboard Summary
-- Ticket List
-- Create Ticket Form
-- Edit Ticket Form
-- Ticket Details View
-- Mobile Responsive View
+## Screenshots
+
+### Dashboard and Ticket Table
+
+<img width="672" height="373" alt="dashboard table" src="https://github.com/user-attachments/assets/af235a14-25b1-4a51-bde9-65e43c9c860a" />
+
+### Create Ticket Form
+
+<img width="663" height="278" alt="create-form" src="https://github.com/user-attachments/assets/fe074f3c-1321-4893-8617-acc2f231493c" />
+
+### Edit Ticket Form
+
+<img width="686" height="293" alt="edit-form" src="https://github.com/user-attachments/assets/d5fb465b-7e67-4b23-a392-93c762da6c63" />
+
+### Ticket Details View
+
+<img width="668" height="221" alt="ticket-details-view" src="https://github.com/user-attachments/assets/93184d4e-4ccb-4f13-aa7b-019c781f8642" />
+
+### Mobile Responsive View
+
+<img width="362" height="450" alt="mobile-responsive 1" src="https://github.com/user-attachments/assets/59cf9a69-cc29-4e5c-832e-a86c8f932bc1" />
+
+<img width="352" height="452" alt="mobile-responsive 2" src="https://github.com/user-attachments/assets/0ac67014-7f42-4371-9fca-b7318084c039" />
+
 
 ## Notes
 
